@@ -42,6 +42,42 @@ public class Circular1 {
         }
     }
 
+    // inseert at the end of circular Linked list O(n)
+    public static Node insertEnd1(Node head, int x){
+        Node temp = new Node(x);
+        if (head == null) {
+            
+            temp.next = temp;
+            return temp;
+        }else{
+
+        Node curr = head;
+        while (curr.next != head) 
+              curr = curr.next;
+        curr.next = temp;
+        temp.next = head;
+        
+        
+        return head;
+        }
+    }
+
+    // insert at the end O(1)
+    public static Node insertEnd2(Node head, int x){
+        Node temp = new Node(x);
+        if (head == null) {
+            temp.next = temp;
+            return temp;
+        }else{
+            temp.next = head.next;
+            head.next =  temp;
+            int t = temp.data;
+            temp.data = head.data;
+            head.data = t;
+        
+        return temp;
+        }
+    }
 
     // traversal method 1 
     public static void printCirList(Node head){
@@ -75,7 +111,13 @@ public class Circular1 {
     //    System.out.println();
     //    traversel(head);
 
-    head = insert2(head, 0);
+    // head = insert2(head, 0);
+    // printCirList(head);
+
+    // head = insertEnd1(head, 0);
+    // printCirList(head);
+
+    head = insertEnd2(head, 0);
     printCirList(head);
 
     }
